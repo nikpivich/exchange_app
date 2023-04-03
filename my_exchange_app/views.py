@@ -11,17 +11,18 @@ def converter(request):
         context = {
             'currencies': currencies
         }
-        # Возвращаем шаблон конвертера
-        return render(request=request, template_name='converter.html', context=context)
+        return render(
+            request=request,
+            template_name='converter.html',
+            context=context
+        )
     if request.method == 'POST':
 
-        # Сохраняем в переменные введенные данные с шаблонв по ключам( ключи указаны в скобках)
         from_amount = float(request.POST.get('from-amount'))
         from_curr = request.POST.get('from-curr')
         to_curr = request.POST.get('to-curr')
 
         converted_amount = round((currencies[to_curr] / currencies[from_curr]) * float(from_amount), 2)
-
 
         context = {
             'from_curr': from_curr,
@@ -30,4 +31,12 @@ def converter(request):
             'currencies': currencies,
             'converted_amount': converted_amount
         }
-        return render(request=request, template_name='converter.html', context=context)
+        return render(
+            request=request,
+            template_name='converter.html',
+            context=context
+        )
+
+
+def calculator(request):
+    pass
